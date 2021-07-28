@@ -1,4 +1,4 @@
-import banner from "./banner_1.jpg";
+import banner from "../assets/banner_1.jpg";
 import _, { shuffle } from "underscore";
 export default function Home() {
   let items = [
