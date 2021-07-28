@@ -12,6 +12,7 @@
     "@types/react-dom": "^17.0.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-image-gallery": "^1.2.5",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
@@ -44,6 +45,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.8"
+    "@types/react-image-gallery": "^1.0.4",
+    "@types/react-router-dom": "^5.1.8",
+    "@types/underscore": "^1.11.3"
   }
 }
