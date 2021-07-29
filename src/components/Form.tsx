@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -10,29 +11,41 @@ interface FormProps {
   urlPOST: string;
 }
 
-export default function Form({urlPOST}: FormProps) {
+export default function Form({ urlPOST }: FormProps) {
   let url = urlPOST;
+  const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
+  const [errorSubmitted, setErrorSubmitted] = useState(false);
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    reset,
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    axios.post(url)
-    .then(response => console.log(response))
-    .catch(err => console.log(err))
-    console.log(data)
+    axios
+      .post(url)
+      .then((response) => {
+        if (response.status === 201) {
+          setIsSuccessfullySubmitted(true);
+          reset();
+        }
+      })
+      .catch((err) => {
+        setErrorSubmitted(true);
+      });
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input
-        defaultValue="email"
+        placeholder="email"
         {...register("email", {
           required: true,
           pattern:
             /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
         })}
+        disabled={isSubmitting}
       />
       {errors.email?.type === "required" && (
         <span>Se requiere ingresar un email</span>
@@ -47,6 +60,7 @@ export default function Form({urlPOST}: FormProps) {
           minLength: 10,
           maxLength: 500,
         })}
+        disabled={isSubmitting}
       />
       {errors.message?.type === "required" && (
         <span>Se requiere ingresar un comentario</span>
@@ -59,6 +73,10 @@ export default function Form({urlPOST}: FormProps) {
       )}
 
       <input type="submit" />
+      {isSuccessfullySubmitted && <div>Enviado correctamente</div>}
+      {errorSubmitted && (
+        <div>Se ha producido un error al enviar su formulario</div>
+      )}
     </form>
   );
 }
