@@ -1,15 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-
-type Inputs = {
-  email: string;
-  message: string;
-};
-
-interface FormProps {
-  urlPOST: string;
-}
+import { FormProps } from "../types/interfaces";
+import { Inputs } from "../types/types";
 
 export default function Form({ urlPOST }: FormProps) {
   let url = urlPOST;
@@ -29,6 +22,8 @@ export default function Form({ urlPOST }: FormProps) {
         if (response.status === 201) {
           setIsSuccessfullySubmitted(true);
           reset();
+        } else {
+          setErrorSubmitted(true);
         }
       })
       .catch((err) => {
