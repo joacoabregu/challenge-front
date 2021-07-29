@@ -1,5 +1,6 @@
 import ImageGallery from "react-image-gallery";
 import { useParams } from "react-router-dom";
+import Form from "../components/Form";
 import "../styles/React-Image-Gallery.css";
 export default function Product() {
   let { id } = useParams<{ id: string }>();
@@ -22,6 +23,13 @@ export default function Product() {
   return (
     <>
       <ImageGallery items={item.images} />
+      <div>
+        <h1> {item.title} </h1>
+        <p>
+          {item.currency} {item.price}
+        </p>
+      </div>
+      <Form />
     </>
   );
 }
