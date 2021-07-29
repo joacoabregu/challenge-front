@@ -15,13 +15,14 @@ interface Comment {
 
 export default function Product() {
   let { id } = useParams<{ id: string }>();
+  const url: string =
+    "https://rooftop-api-rest-frontend.herokuapp.com/questions";
   let [comments, setComments] = useState([]);
 
   useEffect(() => {
-    let url: string =
-      "https://rooftop-api-rest-frontend.herokuapp.com/questions?item_id=" + id;
+    let urlGET: string = url + "?item_id=" + id;
     axios
-      .get(url)
+      .get(urlGET)
       .then((response) => {
         setComments(response.data);
       })
@@ -68,7 +69,7 @@ export default function Product() {
           {item.currency} {item.price}
         </p>
       </div>
-      <Form />
+      <Form urlPOST={url} />
       <h2>Comentarios</h2>
       {data}
     </>
