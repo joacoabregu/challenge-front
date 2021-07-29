@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -5,16 +6,23 @@ type Inputs = {
   message: string;
 };
 
-export default function Form() {
+interface FormProps {
+  urlPOST: string;
+}
+
+export default function Form({urlPOST}: FormProps) {
+  let url = urlPOST;
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-
-  console.log(watch("email")); // watch input value by passing the name of it
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    axios.post(url)
+    .then(response => console.log(response))
+    .catch(err => console.log(err))
+    console.log(data)
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
