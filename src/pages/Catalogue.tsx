@@ -1,16 +1,26 @@
 import { useAppSelector, useAppDispatch } from "../state/hooks";
-import { getItems, selectItems } from "../state/itemsSlice";
+import { getItems, selectItems, selectStatus } from "../state/itemsSlice";
 import { Item } from "../types/interfaces";
 import { Items } from "../types/interfaces";
 import { useEffect } from "react";
 
 export default function Catalogue() {
   let items: Items = useAppSelector(selectItems);
+  let status = useAppSelector(selectStatus);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getItems());
   }, [dispatch]);
+
+  if (status === "error") {
+    return (
+      <div>
+        <p>Se ha producido un error. Intente más tarde</p>
+      </div>
+    );
+  }
 
   if (!items.length) {
     return <div>No hay items para mostrar</div>;
