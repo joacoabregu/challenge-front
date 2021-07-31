@@ -1,86 +1,58 @@
 import banner from "../assets/banner_1.jpg";
-import _, { shuffle } from "underscore";
+import { shuffle } from "underscore";
+import { useAppSelector, useAppDispatch } from "../state/hooks";
+import { getItems, selectItems, selectStatus } from "../state/itemsSlice";
+import { Item, Items } from "../types/interfaces";
+import { useEffect } from "react";
 export default function Home() {
-  let items = [
-    {
-      id: 1,
-      title: "Increible Ladrillo Mesa",
-      currency: "R$",
-      price: "493.00",
-      offer: {
-        price: 320.45,
-        expires_at: "2022-03-17T04:04:06.028Z",
-      },
-      images: [
-        "http://placeimg.com/640/480",
-        "http://placeimg.com/640/480",
-        "http://placeimg.com/640/480",
-      ],
-    },
-    {
-      id: 2,
-      title: "Genérico Madera Pantalones",
-      currency: "₨",
-      price: "785.00",
-      offer: {
-        price: 667.25,
-        expires_at: "2021-08-24T23:58:59.988Z",
-      },
-      images: [
-        "http://placeimg.com/640/480",
-        "http://placeimg.com/640/480",
-        "http://placeimg.com/640/480",
-      ],
-    },
-    {
-      id: 3,
-      title: "Guapa Plástico Silla",
-      currency: "₦",
-      price: "423.00",
-      offer: null,
-      images: [
-        "http://placeimg.com/640/480",
-        "http://placeimg.com/640/480",
-        "http://placeimg.com/640/480",
-      ],
-    },
-    {
-      id: 4,
-      title: "Sabroso Acero Pescado",
-      currency: "﷼",
-      price: "335.00",
-      offer: null,
-      images: [
-        "http://placeimg.com/640/480",
-        "http://placeimg.com/640/480",
-        "http://placeimg.com/640/480",
-      ],
-    },
-  ];
+  let items: Items = useAppSelector(selectItems);
+  let status = useAppSelector(selectStatus);
+  const dispatch = useAppDispatch();
 
-  return (
-    <main>
-      <img src={banner} alt="banner" />
-      {items.map((item) => {
-        let price;
-        if (item.offer) {
-          price = item.offer.price;
-        } else {
-          price = item.price;
-        }
-        return (
-          <div key={item.id}>
-            <img src={item.images[0]} alt="product"></img>
-            <div>
-              <p>{item.title}</p>
-              <p>
-                {item.currency}
-                {price}
-              </p>
+  useEffect(() => {
+    dispatch(getItems());
+  }, [dispatch]);
+
+  if (items.length) {
+    let shuffleItems: Items = shuffle(items);
+    let sliceShuffleItems: Items = shuffleItems.slice(0, 4);
+    console.log(sliceShuffleItems);
+    return (
+      <main>
+        <img src={banner} alt="banner" />
+        {sliceShuffleItems.map((item: Item) => {
+          let price;
+          if (item.offer) {
+            price = item.offer.price;
+          } else {
+            price = item.price;
+          }
+          return (
+            <div key={item.id}>
+              <img src={item.images[0]} alt="product"></img>
+              <div>
+                <p>{item.title}</p>
+                <p>
+                  {item.currency}
+                  {price}
+                </p>
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </main>
-  );
+          );
+        })}
+      </main>
+    );
+  }
+  if (status === "error") {
+    return (
+      <div>
+        <p>Se ha producido un error. Intente más tarde</p>
+      </div>
+    );
+  }
+  if (!items.length) {
+    return <div>No hay items para mostrar</div>;
+  }
+
+  return <div>Descargando...</div>;
 }
