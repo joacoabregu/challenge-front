@@ -7,6 +7,7 @@ import "../styles/React-Image-Gallery.css";
 import { Comment, Item, Items } from "../types/interfaces";
 import { getItems, selectItems, selectStatus } from "../state/itemsSlice";
 import { useAppSelector, useAppDispatch } from "../state/hooks";
+import Comments from "../components/Comments";
 
 export default function Product() {
   let items: Items = useAppSelector(selectItems);
@@ -19,36 +20,9 @@ export default function Product() {
   let { id } = useParams<{ id: string }>();
   const url: string =
     "https://rooftop-api-rest-frontend.herokuapp.com/questions";
-  let [comments, setComments] = useState<Comment[] | []>([]);
 
-  useEffect(() => {
-    let urlGET: string = url + "?item_id=" + id;
-    axios
-      .get(urlGET)
-      .then((response: AxiosResponse) => {
-        setComments(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [id]);
-  
   let item: Item | undefined = items.find((item) => item.id === Number(id));
-  let data;
-  if (!comments.length) {
-    data = <p>No hay comentarios</p>;
-  } else {
-    data = comments.map((comment: Comment) => {
-      return (
-        <div key={comment.sent_at}>
-          <p>{comment.question} </p>
-          <p>{comment.answer} </p>
-          <p>{comment.sent_at} </p>
-        </div>
-      );
-    });
-  }
-  
+
   if (!item) {
     return <p>No exite este producto</p>;
   }
@@ -69,7 +43,7 @@ export default function Product() {
       </div>
       <Form urlPOST={url} />
       <h2>Comentarios</h2>
-      {data}
+      <Comments id={id} />
     </>
   );
 }
