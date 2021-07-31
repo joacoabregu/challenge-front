@@ -27,7 +27,6 @@ export default function Home() {
   if (items.length) {
     let shuffleItems: Items = shuffle(items);
     let sliceShuffleItems: Items = shuffleItems.slice(0, 4);
-    console.log(sliceShuffleItems);
     return (
       <main>
         <ImageGallery
