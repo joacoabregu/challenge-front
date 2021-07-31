@@ -5,11 +5,16 @@ import axios, { AxiosResponse } from "axios";
 import Form from "../components/Form";
 import "../styles/React-Image-Gallery.css";
 import { Comment, Item, Items } from "../types/interfaces";
-import { selectItems, selectStatus } from "../state/itemsSlice";
-import { useAppSelector } from "../state/hooks";
+import { getItems, selectItems, selectStatus } from "../state/itemsSlice";
+import { useAppSelector, useAppDispatch } from "../state/hooks";
 
 export default function Product() {
   let items: Items = useAppSelector(selectItems);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getItems());
+  }, [dispatch]);
   let status = useAppSelector(selectStatus);
   let { id } = useParams<{ id: string }>();
   const url: string =
@@ -27,7 +32,7 @@ export default function Product() {
         console.log(error);
       });
   }, [id]);
-
+  
   let item: Item | undefined = items.find((item) => item.id === Number(id));
   let data;
   if (!comments.length) {
@@ -43,6 +48,7 @@ export default function Product() {
       );
     });
   }
+  
   if (!item) {
     return <p>No exite este producto</p>;
   }
