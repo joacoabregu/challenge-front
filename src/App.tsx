@@ -3,8 +3,10 @@ import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import Catalogue from "./pages/Catalogue";
-import Product from "./pages/Product";
+import React, { Suspense } from "react";
+
+const Product = React.lazy(() => import("./pages/Product"));
+const Catalogue = React.lazy(() => import("./pages/Catalogue"));
 
 function App() {
   return (
@@ -12,13 +14,19 @@ function App() {
       <Navigation />
       <Switch>
         <Route path="/catalogo">
-          <Catalogue />
+          <Suspense fallback={<div>Cargando...</div>}>
+            <Catalogue />
+          </Suspense>
         </Route>
-        <Route path="/producto/:id">
-          <Product />
+        <Route path="/catalogo/detalle/:id">
+          <Suspense fallback={<div>Cargando...</div>}>
+            <Product />
+          </Suspense>
         </Route>
         <Route path="/">
-          <Home />
+          <Suspense fallback={<div>Cargando...</div>}>
+            <Home />
+          </Suspense>
         </Route>
       </Switch>
       <Footer />
