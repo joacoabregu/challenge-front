@@ -4,6 +4,7 @@ import { Item as ItemInterface } from "../types/interfaces";
 import { Items } from "../types/interfaces";
 import { useEffect } from "react";
 import Item from "../components/Item";
+import Spinner from "../components/Spinner";
 
 export default function Catalogue() {
   let items: Items = useAppSelector(selectItems);
@@ -29,7 +30,7 @@ export default function Catalogue() {
   }
 
   if (!items.length) {
-    return <div>No hay items para mostrar</div>;
+    return <Spinner />;
   } else {
     return (
       <>

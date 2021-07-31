@@ -7,10 +7,11 @@ import { Item, Items } from "../types/interfaces";
 import { getItems, selectItems, selectStatus } from "../state/itemsSlice";
 import { useAppSelector, useAppDispatch } from "../state/hooks";
 import Comments from "../components/Comments";
+import Spinner from "../components/Spinner";
 
 export default function Product() {
   let items: Items = useAppSelector(selectItems);
-  let item: Item | undefined = items.find((item) => item.id === Number(id));
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getItems());
@@ -22,8 +23,9 @@ export default function Product() {
       dispatch(getItems());
     }
   }, [status, dispatch]);
-  
+
   let { id } = useParams<{ id: string }>();
+  let item: Item | undefined = items.find((item) => item.id === Number(id));
   const url: string =
     "https://rooftop-api-rest-frontend.herokuapp.com/questions";
 
@@ -36,7 +38,7 @@ export default function Product() {
   }
 
   if (!item) {
-    return <p>No exite este producto</p>;
+    return <Spinner />;
   }
   let itemImages = item.images.map((image) => {
     return {
