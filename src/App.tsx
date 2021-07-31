@@ -13,7 +13,7 @@ function App() {
     <Router>
       <Navigation />
       <Switch>
-        <Route path="/catalogo">
+        <Route exact path="/catalogo">
           <Suspense fallback={<div>Cargando...</div>}>
             <Catalogue />
           </Suspense>
