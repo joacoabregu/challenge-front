@@ -1,4 +1,4 @@
-import { Items } from "./interfaces";
+import { Item, Items } from "./interfaces";
 import { Comment } from "./interfaces";
 
 export type Inputs = {
@@ -16,6 +16,8 @@ export type CommentProps = {
 
 export type CommentsProps = {
   id: string;
-}
+};
 
-
+export type ItemProps = {
+  item: Item;
+};
