@@ -1,27 +1,39 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 import { useParams } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
 import Form from "../components/Form";
 import "../styles/React-Image-Gallery.css";
-import { Comment, Item, Items } from "../types/interfaces";
+import { Item, Items } from "../types/interfaces";
 import { getItems, selectItems, selectStatus } from "../state/itemsSlice";
 import { useAppSelector, useAppDispatch } from "../state/hooks";
 import Comments from "../components/Comments";
 
 export default function Product() {
   let items: Items = useAppSelector(selectItems);
+  let item: Item | undefined = items.find((item) => item.id === Number(id));
   const dispatch = useAppDispatch();
-
   useEffect(() => {
     dispatch(getItems());
   }, [dispatch]);
+
   let status = useAppSelector(selectStatus);
+  useEffect(() => {
+    if (status === "error") {
+      dispatch(getItems());
+    }
+  }, [status, dispatch]);
+  
   let { id } = useParams<{ id: string }>();
   const url: string =
     "https://rooftop-api-rest-frontend.herokuapp.com/questions";
 
-  let item: Item | undefined = items.find((item) => item.id === Number(id));
+  if (status === "error") {
+    return (
+      <div>
+        <p>Se ha producido un error. Intente más tarde</p>
+      </div>
+    );
+  }
 
   if (!item) {
     return <p>No exite este producto</p>;
