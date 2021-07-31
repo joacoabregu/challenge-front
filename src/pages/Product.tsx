@@ -1,29 +1,26 @@
 import { useState, useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Form from "../components/Form";
-
 import "../styles/React-Image-Gallery.css";
-
-interface Comment {
-  question: string;
-  customer_name: string;
-  answer: string;
-  sent_at: string;
-}
+import { Comment, Item, Items } from "../types/interfaces";
+import { selectItems, selectStatus } from "../state/itemsSlice";
+import { useAppSelector } from "../state/hooks";
 
 export default function Product() {
+  let items: Items = useAppSelector(selectItems);
+  let status = useAppSelector(selectStatus);
   let { id } = useParams<{ id: string }>();
   const url: string =
     "https://rooftop-api-rest-frontend.herokuapp.com/questions";
-  let [comments, setComments] = useState([]);
+  let [comments, setComments] = useState<Comment[] | []>([]);
 
   useEffect(() => {
     let urlGET: string = url + "?item_id=" + id;
     axios
       .get(urlGET)
-      .then((response) => {
+      .then((response: AxiosResponse) => {
         setComments(response.data);
       })
       .catch((error) => {
@@ -31,21 +28,7 @@ export default function Product() {
       });
   }, [id]);
 
-  let item = {
-    id: 1,
-    title: "Increible Ladrillo Mesa",
-    currency: "R$",
-    price: "493.00",
-    offer: {
-      price: 320.45,
-      expires_at: "2022-03-17T04:04:06.028Z",
-    },
-    images: [
-      { original: "http://placeimg.com/640/480" },
-      { original: "http://placeimg.com/640/480" },
-      { original: "http://placeimg.com/640/480" },
-    ],
-  };
+  let item: Item | undefined = items.find((item) => item.id === Number(id));
   let data;
   if (!comments.length) {
     data = <p>No hay comentarios</p>;
@@ -60,9 +43,18 @@ export default function Product() {
       );
     });
   }
+  if (!item) {
+    return <p>No exite este producto</p>;
+  }
+  let itemImages = item.images.map((image) => {
+    return {
+      original: image,
+      thumbnail: image,
+    };
+  });
   return (
     <>
-      <ImageGallery items={item.images} />
+      <ImageGallery items={itemImages} />
       <div>
         <h1> {item.title} </h1>
         <p>
