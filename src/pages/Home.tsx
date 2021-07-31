@@ -56,5 +56,5 @@ export default function Home() {
     return <Spinner />;
   }
 
-  return <div>Descargando...</div>;
+  return <Spinner />;
 }
