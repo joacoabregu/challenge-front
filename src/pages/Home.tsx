@@ -1,9 +1,14 @@
-import banner from "../assets/banner_1.jpg";
+import banner1 from "../assets/banner_1.jpg";
+import banner2 from "../assets/banner_2.jpg";
+import banner3 from "../assets/banner_3.jpg";
 import { shuffle } from "underscore";
 import { useAppSelector, useAppDispatch } from "../state/hooks";
 import { getItems, selectItems, selectStatus } from "../state/itemsSlice";
 import { Item, Items } from "../types/interfaces";
 import { useEffect } from "react";
+import ImageGallery from "react-image-gallery";
+import "../styles/React-Image-Gallery.css";
+
 export default function Home() {
   let items: Items = useAppSelector(selectItems);
   let status = useAppSelector(selectStatus);
@@ -13,13 +18,26 @@ export default function Home() {
     dispatch(getItems());
   }, [dispatch]);
 
+  let imageBanner = [
+    { original: banner1 },
+    { original: banner2 },
+    { original: banner3 },
+  ];
+
   if (items.length) {
     let shuffleItems: Items = shuffle(items);
     let sliceShuffleItems: Items = shuffleItems.slice(0, 4);
     console.log(sliceShuffleItems);
     return (
       <main>
-        <img src={banner} alt="banner" />
+        <ImageGallery
+          items={imageBanner}
+          showNav={false}
+          showThumbnails={false}
+          showFullscreenButton={false}
+          showPlayButton={false}
+          autoPlay={true}
+        />
         {sliceShuffleItems.map((item: Item) => {
           let price;
           if (item.offer) {
