@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormProps } from "../types/interfaces";
-import { Inputs } from "../types/types";
+import type { Inputs } from "../types/types";
 
 export default function Form({ urlPOST }: FormProps) {
   let url = urlPOST;
