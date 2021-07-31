@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 import "../styles/React-Image-Gallery.css";
 import Item from "../components/Item";
+import Spinner from "../components/Spinner";
 
 export default function Home() {
   let items: Items = useAppSelector(selectItems);
@@ -52,7 +53,7 @@ export default function Home() {
     );
   }
   if (!items.length) {
-    return <div>No hay items para mostrar</div>;
+    return <Spinner />;
   }
 
   return <div>Descargando...</div>;
