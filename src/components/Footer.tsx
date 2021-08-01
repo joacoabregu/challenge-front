@@ -1,3 +1,4 @@
+import "../styles/Footer.css";
 export default function Footer() {
   let date: Date = new Date();
   let year: number = date.getFullYear();
