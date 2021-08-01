@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import "../styles/Navigation.css";
 function Navigation() {
   return (
     <header className="header">
