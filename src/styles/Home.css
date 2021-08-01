@@ -1,0 +1,9 @@
+.items {
+  padding: 0 1em;
+  text-align: center;
+}
+
+.item {
+  margin-bottom: 1em;
+  border: 1px solid gray;
+}
