@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormProps } from "../types/interfaces";
 import type { Inputs } from "../types/types";
+import "../styles/Form.css";
 
 export default function Form({ urlPOST }: FormProps) {
   let url = urlPOST;
@@ -67,7 +68,7 @@ export default function Form({ urlPOST }: FormProps) {
         <span>El comentario debe tener 500 caracteres como máximo</span>
       )}
 
-      <input type="submit" />
+      <input type="submit" className="form-submit" />
       {isSuccessfullySubmitted && <div>Enviado correctamente</div>}
       {errorSubmitted && (
         <div>Se ha producido un error al enviar su formulario</div>
