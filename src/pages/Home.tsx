@@ -10,6 +10,7 @@ import ImageGallery from "react-image-gallery";
 import "../styles/React-Image-Gallery.css";
 import Item from "../components/Item";
 import Spinner from "../components/Spinner";
+import "../styles/Home.css";
 
 export default function Home() {
   let items: Items = useAppSelector(selectItems);
@@ -39,9 +40,11 @@ export default function Home() {
           showPlayButton={false}
           autoPlay={true}
         />
-        {sliceShuffleItems.map((data: ItemInterface) => (
-          <Item item={data} />
-        ))}
+        <div className="items">
+          {sliceShuffleItems.map((data: ItemInterface) => (
+            <Item item={data} />
+          ))}
+        </div>
       </main>
     );
   }
