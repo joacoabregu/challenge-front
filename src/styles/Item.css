@@ -1,7 +1,40 @@
+.item {
+  max-width: 200px;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  border: 1px solid #464646;
+  text-align: center;
+}
+
 .item > img {
   width: 100%;
 }
 
 .item-title {
+  font-weight: bold;
+}
+
+.item p {
+  margin: 0.4em 0 0.4em 0;
+}
+
+.item a {
+  font-size: 0.8rem;
+  background-color: #252525;
+  color: white;
+  padding: 0.8em 1.2em;
+  margin-bottom: 0.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.item a:hover,
+.item a:focus {
+  background-color: #464646;
+}
+
+.item-price-alert {
+  color: green;
   font-weight: bold;
 }
