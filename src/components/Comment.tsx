@@ -1,10 +1,13 @@
-import {CommentProps} from "../types/types"
+import { CommentProps } from "../types/types";
+import "../styles/Comment.css";
+import { commentToDate } from "../helpers/functions";
 export default function Comment({ comment }: CommentProps) {
+  let date: string = commentToDate(comment.sent_at);
   return (
-    <div key={comment.sent_at}>
-      <p>{comment.question} </p>
+    <div className="comment" key={comment.sent_at}>
+      <p className="comment-question">{comment.question} </p>
       <p>{comment.answer} </p>
-      <p>{comment.sent_at} </p>
+      <p className="comment-date">{date} </p>
     </div>
   );
 }
