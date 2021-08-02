@@ -34,8 +34,8 @@ export default function Catalogue() {
   } else {
     return (
       <>
-        {items.map((data: ItemInterface) => (
-          <Item item={data} />
+        {items.map((data: ItemInterface, index) => (
+          <Item item={data} key={index} />
         ))}
       </>
     );

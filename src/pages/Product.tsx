@@ -8,6 +8,7 @@ import { getItems, selectItems, selectStatus } from "../state/itemsSlice";
 import { useAppSelector, useAppDispatch } from "../state/hooks";
 import Comments from "../components/Comments";
 import Spinner from "../components/Spinner";
+import "../styles/Product.css";
 
 export default function Product() {
   let items: Items = useAppSelector(selectItems);
@@ -47,7 +48,7 @@ export default function Product() {
     };
   });
   return (
-    <>
+    <section>
       <ImageGallery items={itemImages} />
       <div>
         <h1> {item.title} </h1>
@@ -58,6 +59,6 @@ export default function Product() {
       <Form urlPOST={url} />
       <h2>Comentarios</h2>
       <Comments id={id} />
-    </>
+    </section>
   );
 }
