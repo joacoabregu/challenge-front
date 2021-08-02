@@ -45,3 +45,30 @@
   color: green;
   font-weight: bold;
 }
+
+@media (min-width: 480px) {
+  .item {
+    max-width: 250px;
+    margin-bottom: 2em;
+  }
+}
+
+@media (min-width: 721px) {
+  .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 350px;
+  }
+}
+@media (min-width: 915px) {
+  .item {
+    margin-top: 2em;
+  }
+}
+@media (min-width: 1124px) {
+  .item {
+    margin: 0 auto;
+    margin-top: 2em;
+  }
+}

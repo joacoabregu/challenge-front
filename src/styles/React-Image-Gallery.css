@@ -3,3 +3,9 @@
 .image-gallery {
   margin-bottom: 1em;
 }
+
+@media (min-width: 480px) {
+  .image-gallery {
+    margin-bottom: 3em;
+  }
+}
