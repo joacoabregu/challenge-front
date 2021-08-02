@@ -23,7 +23,7 @@ export default function Catalogue() {
   }, [status, dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage] = useState(5);
+  const booksPerPage: number = 5;
   // Get current books
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
@@ -44,9 +44,11 @@ export default function Catalogue() {
   } else {
     return (
       <>
-        {currentItems.map((data: ItemInterface, index) => (
-          <Item item={data} key={index} />
-        ))}
+        <div className="items">
+          {currentItems.map((data: ItemInterface, index) => (
+            <Item item={data} key={index} />
+          ))}
+        </div>
         <Pagination
           perPage={booksPerPage}
           total={items.length}
