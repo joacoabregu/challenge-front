@@ -41,8 +41,8 @@ export default function Home() {
           autoPlay={true}
         />
         <div className="items">
-          {sliceShuffleItems.map((data: ItemInterface) => (
-            <Item item={data} />
+          {sliceShuffleItems.map((data: ItemInterface, index) => (
+            <Item item={data} key={index} />
           ))}
         </div>
       </main>
