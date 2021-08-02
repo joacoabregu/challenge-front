@@ -4,10 +4,15 @@
   margin-bottom: 1em;
   border: 1px solid #464646;
   text-align: center;
+  border-radius: 0 0 0.5em 0.5em;
 }
 
 .item > img {
   width: 100%;
+}
+
+.item-text {
+  padding: 0.5em;
 }
 
 .item-title {
@@ -15,7 +20,7 @@
 }
 
 .item p {
-  margin: 0.4em 0 0.4em 0;
+  margin: 0.7em 0 0.7em 0;
 }
 
 .item a {
@@ -23,10 +28,12 @@
   background-color: #252525;
   color: white;
   padding: 0.8em 1.2em;
+  margin-top: 1em;
   margin-bottom: 0.5em;
   text-decoration: none;
   text-transform: uppercase;
   display: inline-block;
+  border-radius: 0.5em;
 }
 
 .item a:hover,
@@ -34,7 +41,7 @@
   background-color: #464646;
 }
 
-.item-price-alert {
+.item-price--alert {
   color: green;
   font-weight: bold;
 }
