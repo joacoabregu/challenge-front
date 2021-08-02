@@ -4,7 +4,7 @@ import "../styles/Navigation.css";
 function Navigation() {
   return (
     <header className="header">
-      <nav>
+      <nav className="nav">
         <img src={logo} alt="logo" />
         <ul>
           <li>
