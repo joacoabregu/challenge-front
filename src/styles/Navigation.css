@@ -19,10 +19,10 @@ ul > li {
 }
 
 li > a {
+  font-size: clamp(1rem, 3vw, 2rem);
   text-decoration: none;
   margin-left: 1em;
   text-transform: uppercase;
-  font-size: 0.8rem;
   display: inline-block;
   position: relative;
 }
@@ -35,7 +35,7 @@ nav ul li a:hover {
   color: #555;
 }
 
-li > a:after {
+.nav li > a:after {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -47,6 +47,6 @@ li > a:after {
   background: #aaa;
   height: 1px;
 }
-li > a:hover:after {
+.nav li > a:hover:after {
   width: 100%;
 }
