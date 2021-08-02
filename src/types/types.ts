@@ -21,3 +21,10 @@ export type CommentsProps = {
 export type ItemProps = {
   item: Item;
 };
+
+export type PaginationProps = {
+  perPage: number;
+  total: number;
+  paginate: (pageNumber: number) => void;
+  currentPage: number;
+};
