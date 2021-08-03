@@ -7,11 +7,18 @@ export function commentToDate(data: string): string {
   return date;
 }
 
-export function dateDifference(date: string): { days: number; hours: number } {
+export function dateDifferenceToStr(date: string): string {
   let offerExpiration = dayjs(date);
   let now = dayjs();
   let dateDifference = offerExpiration.diff(now, "day", true);
   let days = Math.floor(dateDifference);
   let hours = Math.floor((dateDifference - days) * 24);
-  return { days, hours };
+  let offerStr = `Esta oferta finaliza en ${days.toString()} días ${
+    hours > 1
+      ? `y ${hours.toString()} horas`
+      : hours === 1
+      ? `y ${hours.toString()} hora`
+      : ""
+  } `;
+  return offerStr;
 }
