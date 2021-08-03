@@ -48,11 +48,11 @@ export default function Product() {
     };
   });
   return (
-    <section>
+    <section className="product">
       <ImageGallery items={itemImages} />
       <div>
-        <h1> {item.title} </h1>
-        <p>
+        <h1 className="product-title"> {item.title} </h1>
+        <p className="product-price">
           {item.currency} {item.price}
         </p>
       </div>
