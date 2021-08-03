@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Item from "../components/Item";
 import Spinner from "../components/Spinner";
 import Pagination from "../components/Pagination";
+import { getCurrentPagination } from "../helpers/functions";
 
 export default function Catalogue() {
   let items: Items = useAppSelector(selectItems);
@@ -23,13 +24,10 @@ export default function Catalogue() {
   }, [status, dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const booksPerPage: number = 5;
-  // Get current books
-  const indexOfLastBook = currentPage * booksPerPage;
-  const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  const currentItems = items.slice(indexOfFirstBook, indexOfLastBook);
+  const itemsPerPage: number = 5;
+  const currentItems = getCurrentPagination(items, currentPage, itemsPerPage);
   // Change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
   if (status === "error") {
     return (
@@ -50,7 +48,7 @@ export default function Catalogue() {
           ))}
         </div>
         <Pagination
-          perPage={booksPerPage}
+          perPage={itemsPerPage}
           total={items.length}
           paginate={paginate}
           currentPage={currentPage}

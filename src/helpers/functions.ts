@@ -22,3 +22,14 @@ export function dateDifferenceToStr(date: string): string {
   } `;
   return offerStr;
 }
+
+export function getCurrentPagination<Type>(
+  items: Array<Type>,
+  currentPage: number,
+  perPage: number
+): Array<Type> {
+  let indexOfLast = currentPage * perPage;
+  let indexOfFirst = indexOfLast - perPage;
+  let currents: Array<Type> = items.slice(indexOfFirst, indexOfLast);
+  return currents;
+}
