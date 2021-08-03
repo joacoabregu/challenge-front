@@ -24,7 +24,7 @@ export const itemsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getItems.fulfilled, (state, { payload }) => {
       state.status = "idle";
-      state.items.push(...payload);
+      state.items = payload;
     });
     builder.addCase(getItems.rejected, (state, { payload }) => {
       state.status = "error";
