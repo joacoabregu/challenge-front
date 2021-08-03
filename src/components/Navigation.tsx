@@ -8,7 +8,6 @@ function Navigation() {
         <Link to="/">
           <img src={logo} alt="logo" />
         </Link>
-
         <ul>
           <li>
             <Link to="/">Home</Link>
