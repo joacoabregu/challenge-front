@@ -35,7 +35,7 @@ export default function Form({ urlPOST }: FormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input
-        placeholder="email"
+        placeholder="Email"
         {...register("email", {
           required: true,
           pattern:
