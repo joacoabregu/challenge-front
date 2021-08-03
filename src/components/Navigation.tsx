@@ -5,7 +5,10 @@ function Navigation() {
   return (
     <header className="header">
       <nav className="nav">
-        <img src={logo} alt="logo" />
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
+
         <ul>
           <li>
             <Link to="/">Home</Link>
