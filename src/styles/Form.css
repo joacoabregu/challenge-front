@@ -7,10 +7,17 @@ form {
 }
 form > input {
   margin-bottom: 0.5em;
+  padding: 0.5em;
+}
+
+form > textarea {
+  min-height: 150px;
+  padding: 0.5em;
 }
 
 .form-submit {
   color: white;
   background-color: #252525;
   padding: 0.5em 0;
+  border: none;
 }
