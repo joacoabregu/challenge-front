@@ -7,6 +7,7 @@ import Item from "../components/Item";
 import Spinner from "../components/Spinner";
 import Pagination from "../components/Pagination";
 import { getCurrentPagination } from "../helpers/functions";
+import "./styles/Items.css";
 
 export default function Catalogue() {
   let items: Items = useAppSelector(selectItems);
@@ -26,7 +27,6 @@ export default function Catalogue() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage: number = 5;
   const currentItems = getCurrentPagination(items, currentPage, itemsPerPage);
-  // Change page
   const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
   if (status === "error") {
