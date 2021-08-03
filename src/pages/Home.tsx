@@ -10,7 +10,7 @@ import ImageGallery from "react-image-gallery";
 import "../styles/React-Image-Gallery.css";
 import Item from "../components/Item";
 import Spinner from "../components/Spinner";
-import "../styles/Home.css";
+import "../styles/Items.css";
 
 export default function Home() {
   let items: Items = useAppSelector(selectItems);
