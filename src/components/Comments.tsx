@@ -1,4 +1,3 @@
-import Comment from "./Comment";
 import { CommentsProps } from "../types/types";
 import { Comment as CommentInterface } from "../types/interfaces";
 import { useEffect, useState } from "react";
@@ -13,6 +12,8 @@ import { Comments as CommentsInterface } from "../types/interfaces";
 import Spinner from "./Spinner";
 import { getCurrentPagination } from "../helpers/functions";
 import Pagination from "./Pagination";
+import React from "react";
+const Comment = React.lazy(() => import("./Comment"));
 
 export default function Comments({ id }: CommentsProps) {
   let comments: CommentsInterface = useAppSelector(selectComments);
