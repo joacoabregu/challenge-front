@@ -2,18 +2,15 @@ import { ItemProps } from "../types/types";
 import "../styles/Item.css";
 import { Link } from "react-router-dom";
 import "../styles/Item.css";
-import { dateDifference } from "../helpers/functions";
+import { dateDifferenceToStr } from "../helpers/functions";
 export default function Item({ item }: ItemProps) {
   let price: string;
   let priceClass: string = "";
-  let daysOffer: number = 0;
-  let hoursOffer: number = 0;
+  let offerStr: string = "";
   if (item.offer) {
     price = item.offer.price.toString();
     priceClass = "item-price--alert";
-    let differenceOffer = dateDifference(item.offer?.expires_at);
-    daysOffer = differenceOffer.days;
-    hoursOffer = differenceOffer.hours;
+    offerStr = dateDifferenceToStr(item.offer?.expires_at);
   } else {
     price = item.price;
   }
@@ -22,13 +19,12 @@ export default function Item({ item }: ItemProps) {
     <div className="item" key={item.id}>
       <img src={item.images[0]} alt="product"></img>
       <div className="item-text">
+        {item.offer && <p>{offerStr}</p>}
         <p className="item-title">{item.title}</p>
         <p
           className={`item-price ${priceClass}`}
         >{`${item.currency} ${price}`}</p>
-        {item.offer && (
-          <p>{`Esta oferta finaliza en ${daysOffer.toString()} días, ${hoursOffer.toString()} horas`}</p>
-        )}
+
         <Link to={url}>Ver más</Link>
       </div>
     </div>
