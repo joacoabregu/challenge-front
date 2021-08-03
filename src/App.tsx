@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -12,25 +12,28 @@ const Catalogue = React.lazy(() => import("./pages/Catalogue"));
 function App() {
   return (
     <Router>
-      <Navigation />
-      <Switch>
-        <Route exact path="/catalogo">
-          <Suspense fallback={<Spinner />}>
-            <Catalogue />
-          </Suspense>
-        </Route>
-        <Route path="/catalogo/detalle/:id">
-          <Suspense fallback={<Spinner />}>
-            <Product />
-          </Suspense>
-        </Route>
-        <Route path="/">
-          <Suspense fallback={<Spinner />}>
-            <Home />
-          </Suspense>
-        </Route>
-      </Switch>
-      <Footer />
+      <div className="parent">
+        <Navigation />
+        <Switch>
+          <Route exact path="/catalogo">
+            <Suspense fallback={<Spinner />}>
+              <Catalogue />
+            </Suspense>
+          </Route>
+          <Route path="/catalogo/detalle/:id">
+            <Suspense fallback={<Spinner />}>
+              <Product />
+            </Suspense>
+          </Route>
+          <Route path="/">
+            <Suspense fallback={<Spinner />}>
+              <Home />
+            </Suspense>
+          </Route>
+        </Switch>
+
+        <Footer />
+      </div>
     </Router>
   );
 }
