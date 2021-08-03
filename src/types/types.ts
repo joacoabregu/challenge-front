@@ -1,4 +1,4 @@
-import { Item, Items } from "./interfaces";
+import { Comments, Item, Items } from "./interfaces";
 import { Comment } from "./interfaces";
 
 export type Inputs = {
@@ -8,6 +8,11 @@ export type Inputs = {
 export type ItemsState = {
   status: "loading" | "idle" | "error";
   items: Items;
+};
+
+export type CommentsState = {
+  status: "loading" | "idle" | "error";
+  comments: Comments;
 };
 
 export type CommentProps = {
