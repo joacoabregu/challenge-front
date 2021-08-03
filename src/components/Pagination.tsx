@@ -1,5 +1,11 @@
 import { PaginationProps } from "../types/types";
-export default function Pagination({ perPage, total, paginate, currentPage } : PaginationProps) {
+import "../styles/Pagination.css";
+export default function Pagination({
+  perPage,
+  total,
+  paginate,
+  currentPage,
+}: PaginationProps) {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(total / perPage); i++) {
@@ -7,7 +13,7 @@ export default function Pagination({ perPage, total, paginate, currentPage } : P
   }
 
   return (
-    <nav>
+    <div>
       <ul className="pagination">
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
@@ -26,6 +32,6 @@ export default function Pagination({ perPage, total, paginate, currentPage } : P
           </li>
         ))}
       </ul>
-    </nav>
+    </div>
   );
 }
