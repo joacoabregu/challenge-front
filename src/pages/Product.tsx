@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 import { useParams } from "react-router-dom";
 import Form from "../components/Form";
@@ -58,7 +58,9 @@ export default function Product() {
       </div>
       <Form urlPOST={url} />
       <h2>Comentarios</h2>
-      <Comments id={id} />
+      <Suspense fallback={<Spinner />}>
+        <Comments id={id} />
+      </Suspense>
     </section>
   );
 }
