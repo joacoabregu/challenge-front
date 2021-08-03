@@ -5,6 +5,8 @@ export interface Comment {
   sent_at: string;
 }
 
+export interface Comments extends Array<Comment> {}
+
 export interface FormProps {
   urlPOST: string;
 }
