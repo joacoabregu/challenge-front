@@ -20,28 +20,47 @@ export function commentDateFormat(data: string): string {
  * Calculates difference between two dates
  * Receives date as ex: 2021-07-24T07:36:44.652Z
  * Returns comment date as
+ * "Esta oferta finaliza en X días" if days is more than 1
  * "Esta oferta finaliza en X días" if hours is less than 1
  * "Esta oferta finaliza en X días y 1 hora" if hours is equal to 1
  * "Esta oferta finaliza en X días y X horas" if hours is more than 1
  * @param {string} x Date
  * @return {string} x Date.
  */
-export function dateDifferenceToStr(date: string): string {
+export function datesDifferenceToStr(date: string): string {
   let offerExpiration = dayjs(date);
   let now = dayjs();
   let dateDifference = offerExpiration.diff(now, "day", true);
-  let days = Math.floor(dateDifference);
-  let hours = Math.floor((dateDifference - days) * 24);
-  let offerStr = `Esta oferta finaliza en ${days.toString()} días ${
-    hours > 1
-      ? `y ${hours.toString()} horas`
-      : hours === 1
-      ? `y ${hours.toString()} hora`
-      : ""
-  } `;
-  return offerStr;
+  let days: number = Math.floor(dateDifference);
+  let hours: number = Math.floor((dateDifference - days) * 24);
+  let offerStr: string = `Esta oferta finaliza en`
+  let hoursStr: string = "";
+  let daysStr: string = "";
+
+  if(days > 1){
+    daysStr = ` ${days.toString()} días`;
+  }
+  if (days === 1) {
+    daysStr = `1 día`;
+  }
+  if(hours > 1) {
+  hoursStr = ` y ${hours.toString()} horas`;
+  }
+  if(hours === 1) {
+    hoursStr = ` y 1 hora.`;
+  }
+   
+  return offerStr + daysStr + hoursStr;
 }
 
+/**
+ * Calculates current items for pagination
+ * Returns sliced array of items according to number of pages and the current page
+ * @param {Array} x Array of items
+ * @param {number} x Current Page.
+ * @param {number} x items per Page.
+ * @return {Array} x Sliced Array.
+ */
 export function getCurrentPagination<Type>(
   items: Array<Type>,
   currentPage: number,
