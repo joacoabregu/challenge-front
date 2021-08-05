@@ -2,6 +2,7 @@ import { ItemProps } from "../types/types";
 import "../styles/Item.css";
 import { Link } from "react-router-dom";
 import { datesDifferenceToStr } from "../helpers/functions";
+import { useHistory } from "react-router-dom";
 export default function Item({ item }: ItemProps) {
   let price: string;
   let priceClass: string = "";
@@ -14,8 +15,13 @@ export default function Item({ item }: ItemProps) {
     price = item.price;
   }
   let url = "/catalogo/detalle/" + item.id;
+
+  let history = useHistory();
+  const redirect = () => {
+    history.push(url);
+  };
   return (
-    <div className="item" key={item.id}>
+    <div className="item" key={item.id} onClick={redirect}>
       <img src={item.images[0]} alt="product"></img>
       <div className="item-text">
         {item.offer && <p>{offerStr}</p>}
