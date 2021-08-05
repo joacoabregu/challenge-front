@@ -24,12 +24,15 @@ export default function Form({ urlPOST }: FormProps) {
       .then((response) => {
         if (response.status === 201) {
           setIsSuccessfullySubmitted(true);
+          setErrorSubmitted(false);
           reset();
         } else {
+          setIsSuccessfullySubmitted(false);
           setErrorSubmitted(true);
         }
       })
       .catch((err) => {
+        setIsSuccessfullySubmitted(false);
         setErrorSubmitted(true);
       });
   };
