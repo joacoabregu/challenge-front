@@ -5,6 +5,7 @@
   border: 1px solid #464646;
   text-align: center;
   border-radius: 0 0 0.5em 0.5em;
+  cursor: pointer;
 }
 
 .item > img {
