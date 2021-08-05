@@ -7,6 +7,7 @@ import "../styles/Form.css";
 
 export default function Form({ urlPOST }: FormProps) {
   let url = urlPOST;
+  // State for form success or error submission
   const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
   const [errorSubmitted, setErrorSubmitted] = useState(false);
 
@@ -16,9 +17,10 @@ export default function Form({ urlPOST }: FormProps) {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<Inputs>();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     axios
-      .post(url)
+      .post(url, data)
       .then((response) => {
         if (response.status === 201) {
           setIsSuccessfullySubmitted(true);
