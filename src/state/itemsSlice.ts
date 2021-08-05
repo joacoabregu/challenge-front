@@ -35,7 +35,6 @@ export const itemsSlice = createSlice({
   },
 });
 
-// Other code such as selectors can use the imported `RootState` type
 export const selectItems = (state: RootState) => state.items.items;
 export const selectStatus = (state: RootState) => state.items.status;
 

@@ -38,7 +38,6 @@ export const commentsSlice = createSlice({
   },
 });
 
-// Other code such as selectors can use the imported `RootState` type
 export const selectComments = (state: RootState) => state.comments.comments;
 export const selectStatus = (state: RootState) => state.comments.status;
 
