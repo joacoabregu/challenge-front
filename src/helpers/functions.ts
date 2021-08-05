@@ -33,23 +33,23 @@ export function datesDifferenceToStr(date: string): string {
   let dateDifference = offerExpiration.diff(now, "day", true);
   let days: number = Math.floor(dateDifference);
   let hours: number = Math.floor((dateDifference - days) * 24);
-  let offerStr: string = `Esta oferta finaliza en`
+  let offerStr: string = `Esta oferta finaliza en`;
   let hoursStr: string = "";
   let daysStr: string = "";
 
-  if(days > 1){
+  if (days > 1) {
     daysStr = ` ${days.toString()} días`;
   }
   if (days === 1) {
-    daysStr = `1 día`;
+    daysStr = ` 1 día`;
   }
-  if(hours > 1) {
-  hoursStr = ` y ${hours.toString()} horas`;
+  if (hours > 1) {
+    hoursStr = ` y ${hours.toString()} horas`;
   }
-  if(hours === 1) {
+  if (hours === 1) {
     hoursStr = ` y 1 hora.`;
   }
-   
+
   return offerStr + daysStr + hoursStr;
 }
 
