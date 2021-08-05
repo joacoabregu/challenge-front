@@ -9,6 +9,7 @@ import { useAppSelector, useAppDispatch } from "../state/hooks";
 import Comments from "../components/Comments";
 import Spinner from "../components/Spinner";
 import "../styles/Product.css";
+import { datesDifferenceToStr } from "../helpers/functions";
 
 export default function Product() {
   let items: Items = useAppSelector(selectItems);
@@ -41,6 +42,17 @@ export default function Product() {
   if (!item) {
     return <Spinner />;
   }
+
+  let price: string;
+  let priceClass: string = "";
+  let offerStr: string = "";
+  if (item.offer) {
+    price = item.offer.price.toString();
+    priceClass = "item-price--alert";
+    offerStr = datesDifferenceToStr(item.offer?.expires_at);
+  } else {
+    price = item.price;
+  }
   // Format item images for React Image Gallery
   let itemImages = item.images.map((image) => {
     return {
@@ -53,8 +65,9 @@ export default function Product() {
       <ImageGallery items={itemImages} />
       <div>
         <h1 className="product-title"> {item.title} </h1>
-        <p className="product-price">
-          {item.currency} {item.price}
+        {item.offer && <p>{offerStr}</p>}
+        <p className={`product-price ${priceClass}`}>
+          {item.currency} {price}
         </p>
       </div>
       <Form urlPOST={url} />
