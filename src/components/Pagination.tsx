@@ -8,6 +8,7 @@ export default function Pagination({
 }: PaginationProps) {
   const pageNumbers = [];
 
+  //Calculate number of pages
   for (let i = 1; i <= Math.ceil(total / perPage); i++) {
     pageNumbers.push(i);
   }
