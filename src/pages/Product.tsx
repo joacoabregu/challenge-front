@@ -12,7 +12,6 @@ import "../styles/Product.css";
 
 export default function Product() {
   let items: Items = useAppSelector(selectItems);
-
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getItems());
@@ -26,6 +25,7 @@ export default function Product() {
   }, [status, dispatch]);
 
   let { id } = useParams<{ id: string }>();
+  // Search item according to id
   let item: Item | undefined = items.find((item) => item.id === Number(id));
   const url: string =
     "https://rooftop-api-rest-frontend.herokuapp.com/questions";
@@ -41,6 +41,7 @@ export default function Product() {
   if (!item) {
     return <Spinner />;
   }
+  // Format item images for React Image Gallery
   let itemImages = item.images.map((image) => {
     return {
       original: image,
