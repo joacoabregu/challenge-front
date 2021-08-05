@@ -24,9 +24,12 @@ export default function Catalogue() {
     }
   }, [status, dispatch]);
 
+  //State for current page for Pagination
   const [currentPage, setCurrentPage] = useState(1);
+  //Set numbers of pages for Pagination
   const itemsPerPage: number = 5;
   const currentItems = getCurrentPagination(items, currentPage, itemsPerPage);
+  //Set current page for Pagination. Pass as props to Navigation component
   const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
   if (status === "error") {
