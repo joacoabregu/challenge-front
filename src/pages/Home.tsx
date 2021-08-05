@@ -28,7 +28,9 @@ export default function Home() {
   ];
 
   if (items.length) {
+    // Reorder items at random
     let shuffleItems: Items = shuffle(items);
+    // Keep first 4 items
     let sliceShuffleItems: Items = shuffleItems.slice(0, 4);
     return (
       <main>
