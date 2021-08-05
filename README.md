@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# Bienvenido al Proyecto "My Business"!  💻
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto se realizó como actividad integradora del Onboarding 2021 de Rooftop para la orientación Frontend. Se trata de una tienda online hecha en React utilizando Typescript, Redux y Vanilla CSS. 🚀
 
-## Available Scripts
 
-In the project directory, you can run:
+##  Scripts Disponibles:
+
+Para este proyecto se utilizó [Create React App](https://github.com/facebook/create-react-app).
+
+En el directorio del proyecto se puede ejecutar:  
 
 ### `npm start`
+Para ejecutar la aplicación en desarrollo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Se puede abrir [http://localhost:3000](http://localhost:3000) para verlo en el navegador.
 
 ### `npm run build`
+ 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Prepara la aplicación para producción en la carpeta `build` folder. Ahora está lista para usarse! 🙌 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Recursos
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+La aplicación permite consultar los siguientes recursos
+* **Home**: Se puede abrir desde [http://localhost:3000](http://localhost:3000). Muestra 4 productos aleatorios de la base de datos.
+* **Catalogo**: Se puede abrir desde [http://localhost:3000/catalogo](http://localhost:3000/catalogo). Muestra el catálogo de todos los productos disponibles en la base de datos con un paginado de 5 productos por página.
+* **Detalle de Productos**: Se puede abrir desde [http://localhost:3000/catalogo/detalle/1](http://localhost:3000/detalle/1). Muestra un detalle del producto con el id ingresado en el último camino (path). Incluye un formulario para hacer consultas y una sección de comentarios.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Material de consulta:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Para el desarrollo de la aplicación se consultaron los siguientes enlaces:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Para Typescript:
+* Se utilizó la [Guia rápida para react con Typescript](https://github.com/typescript-cheatsheets/react)
+* Uso de Genéricos en Typescript(https://www.typescriptlang.org/docs/handbook/2/generics.html)
+* [Destructuración de objetos](https://flaviocopes.com/typescript-object-destructuring/)
 
-## Learn More
+Para Redux:
+* Como introducción a Redux Toolkit [Guía de inicio](https://redux-toolkit.js.org/introduction/getting-started)
+* Para el manejo de consultas asíncronas [Uso de Thunk](https://redux-toolkit.js.org/api/createAsyncThunk)
+* Guía para la utilización de [Async Thunk y Typescript](https://www.newline.co/@bespoyasov/how-to-use-thunks-with-redux-toolkit-and-typescript--1e65fc64)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Para la librería Day.js:
+* Guía para calcular [diferencia entre dos fechas](https://day.js.org/docs/en/display/difference)
+* Código para [retornar días y horas](https://stackoverflow.com/questions/66639760/dayjs-diff-between-two-date-in-day-and-hours)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Misceláneo:
+* Configuración de [mensajes en React-Hook-Form](https://www.carlrippon.com/successful-submission-in-react-hook-form/) 
+* [React Spinner](https://www.npmjs.com/package/react-spinners) 
+* Efectos [Hover](https://codepen.io/maheshambure21/pen/QwXaRw) 
