@@ -1,7 +1,6 @@
 import { ItemProps } from "../types/types";
 import "../styles/Item.css";
 import { Link } from "react-router-dom";
-import "../styles/Item.css";
 import { datesDifferenceToStr } from "../helpers/functions";
 export default function Item({ item }: ItemProps) {
   let price: string;
@@ -24,7 +23,6 @@ export default function Item({ item }: ItemProps) {
         <p
           className={`item-price ${priceClass}`}
         >{`${item.currency} ${price}`}</p>
-
         <Link to={url}>Ver más</Link>
       </div>
     </div>
