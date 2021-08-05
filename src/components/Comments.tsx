@@ -29,13 +29,16 @@ export default function Comments({ id }: CommentsProps) {
     }
   }, [status, dispatch, id]);
 
+  //State for current page for Pagination
   const [currentPage, setCurrentPage] = useState(1);
+  //Set numbers of pages for Pagination
   const commentsPerPage: number = 4;
   const currentComments = getCurrentPagination(
     comments,
     currentPage,
     commentsPerPage
   );
+  //Set current page for Pagination. Pass as props to Navigation component
   const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
   if (status === "error") {
