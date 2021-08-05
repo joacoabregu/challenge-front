@@ -2,7 +2,7 @@ import { ItemProps } from "../types/types";
 import "../styles/Item.css";
 import { Link } from "react-router-dom";
 import "../styles/Item.css";
-import { dateDifferenceToStr } from "../helpers/functions";
+import { datesDifferenceToStr } from "../helpers/functions";
 export default function Item({ item }: ItemProps) {
   let price: string;
   let priceClass: string = "";
@@ -10,7 +10,7 @@ export default function Item({ item }: ItemProps) {
   if (item.offer) {
     price = item.offer.price.toString();
     priceClass = "item-price--alert";
-    offerStr = dateDifferenceToStr(item.offer?.expires_at);
+    offerStr = datesDifferenceToStr(item.offer?.expires_at);
   } else {
     price = item.price;
   }
