@@ -38,16 +38,20 @@ export function datesDifferenceToStr(date: string): string {
   let daysStr: string = "";
 
   if (days > 1) {
-    daysStr = ` ${days.toString()} días`;
+    daysStr = ` ${days.toString()} días y`;
   }
   if (days === 1) {
-    daysStr = ` 1 día`;
+    daysStr = ` 1 día y`;
   }
   if (hours > 1) {
-    hoursStr = ` y ${hours.toString()} horas`;
+    hoursStr = ` ${hours.toString()} horas`;
   }
   if (hours === 1) {
-    hoursStr = ` y 1 hora.`;
+    hoursStr = ` 1 hora.`;
+  }
+  if (hours === 0) {
+    // remove " y" from daysStr
+    daysStr = daysStr.slice(0, -2);
   }
 
   return offerStr + daysStr + hoursStr;
